@@ -1,8 +1,9 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
 import pyromod
+from datetime import datetime
 
-api_id = 111111
+api_id = 1111111
 api_hash = " "
 token = " "
 
@@ -16,6 +17,13 @@ sent = False
 
 @app.on_message(filters.private)
 async def ADMINS(c: Client, m: Message):
+
+    if m.text == "/ping" or m.text == "Ping":
+        start_t = datetime.now()
+        await app.send_message(m.chat.id,"Pong!")
+        end_t = datetime.now()
+        time_taken_s = (end_t - start_t).microseconds / 1000
+        await app.send_message(m.chat.id,f"Ping Pong Speed\n{time_taken_s} milli-seconds")
 
     async def get_chat_member_status():     #get chat member status in group
         try:
