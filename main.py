@@ -3,9 +3,9 @@ from pyrogram.types import Message
 import pyromod
 from datetime import datetime
 
-api_id = 1111111
+api_id = 11111111
 api_hash = " "
-token = " "
+token= " "
 
 app = Client(
     "my_bot",
@@ -40,16 +40,21 @@ async def ADMINS(c: Client, m: Message):
 
 
     if m.text == "/Contact":
-        Answer = await app.ask(m.chat.id,"هر حرفی بزنی به صورت **کاملا ناشناس** به ادمین منتقل میشه!",timeout=120)
+        Answer = await app.ask(m.chat.id,"هر حرفی بزنی به صورت **کاملا ناشناس** به ادمین منتقل میشه!\nلغو: /cancel",timeout=120)
         if Answer:
-            if Answer.media:
-                await app.send_message(6656876248, "پیام ناشناس داری عزیزم:")
-                await app.copy_media_group(6656876248, Answer.from_user.id, Answer.id)
-                await app.send_message(Answer.from_user.id, "عشق داداش پیامت با موفقیت ارسال شد", reply_to_message_id= Answer.id)
+            if Answer.text=="/cancel":
+                await app.send_message(Answer.from_user.id, "کنسلش کردم مشتی.")
+                pass
+
             else:
-                await app.send_message(6656876248, "پیام ناشناس داری عزیزم:")
-                await app.copy_message(6656876248, Answer.from_user.id, Answer.id)
-                await app.send_message(Answer.from_user.id, "عشق داداش پیامت با موفقیت ارسال شد", reply_to_message_id= Answer.id)
+                if Answer.media:
+                    await app.send_message(6656876248, "پیام ناشناس داری عزیزم:")
+                    await app.copy_media_group(6656876248, Answer.from_user.id, Answer.id)
+                    await app.send_message(Answer.from_user.id, "عشق داداش پیامت با موفقیت ارسال شد", reply_to_message_id= Answer.id)
+                else:
+                    await app.send_message(6656876248, "پیام ناشناس داری عزیزم:")
+                    await app.copy_message(6656876248, Answer.from_user.id, Answer.id)
+                    await app.send_message(Answer.from_user.id, "عشق داداش پیامت با موفقیت ارسال شد", reply_to_message_id= Answer.id)
         if not Answer:
             await app.send_message(Answer.from_user.id, "مشتی پیام ندادی کاسه صبرم لبریز شد کنسلش کردم",)
        
