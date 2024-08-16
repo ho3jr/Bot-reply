@@ -57,7 +57,7 @@ async def ADMINS(c: Client, m: Message):
                         await app.copy_message(6656876248, Answer.from_user.id, Answer.id)
                         await app.send_message(Answer.from_user.id, "عشق داداش پیامت با موفقیت ارسال شد", reply_to_message_id= Answer.id)
         except:
-            await app.send_message(Answer.from_user.id, "مشتی پیام ندادی کاسه صبرم لبریز شد کنسلش کردم",)
+            await app.send_message(m.from_user.id, "مشتی پیام ندادی کاسه صبرم لبریز شد کنسلش کردم",)
        
     if m.text != "/Contact" and m.text != "/start":
         status_member = await get_chat_member_status()
